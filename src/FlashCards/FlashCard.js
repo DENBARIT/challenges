@@ -1,5 +1,5 @@
-import "./styles.css";
-
+import "../FlashCards/styles.css";
+import { useState } from "react";
 export default function App() {
   return (
     <div className="App">
@@ -42,20 +42,48 @@ const questions = [
   }
 ];
 
+// function FlashCards() {
+//   return <div className="flashcards">
+
+//     {questions.map((question)=><Question question={question} key={question.id}/>)}
+
+//   </div>;
+// }
+// function Question({question}){
+    
+//     const [selected, setSelected] = useState(null);
+// function handleClick(id){
+//     setSelected(selected==id?null:id);
+// }
+
+// return(
+//     <div className={`flashcards ${selected == question.id ? "selected" : ""}`} onClick={() => {
+      
+//       setSelected(()=>handleClick(question.id));
+    
+//     }}>
+       
+       
+//         {selected==question.id ? <p>{question.answer}</p>:<p>{question.question}</p>}
+        
+//     </div>
+// )
+
+// }
 function FlashCards() {
-  return <div>
-<ul >
-    {questions.map((question)=><Question question={question} key={question.id}/>)}
-</ul>
-  </div>;
+    const [selectedId, setSelectedId] = useState( null);
+    function handleClick(id) {
+        setSelectedId(selectedId === id ? null : id);
+    }
+    return (
+        <div className="flashcards">
+            {questions.map((question) => (
+                <div key={question.id} className={question.id === selectedId ? "selected" : ""} onClick={() => handleClick(question.id)}>
+                
+                 <p>{question.id==selectedId ? question.answer : question.question}</p></div>
+            ))}
+        </div>
+    );
 }
-function Question({question}){
-return(
-    <li>
-        <p>{question.question}</p>
-    </li>
-)
-
-
-
-}
+    
+// remarks here we have to pass a real function ()=>handleClick not a function call handleClick(questionid)
