@@ -20,46 +20,33 @@ const faqs = [
 ];
 
 export default function App() {
-
-   
-const [curOpen, setcurOpen] = useState(false);
   return (
     <div>
-      <Accordion  curOpen={curOpen} setcurOpen={setcurOpen} />
+      <Accordion  />
     </div>
   );
 }
 
-function Accordion({curOpen, setcurOpen}){
+function Accordion(){
     
     return <ul className="accordion">
-        {faqs.map((faq,num)=>
-        <Question faq={faq} num={num} key={faq.title} curOpen={curOpen} setcurOpen={setcurOpen} >{faq.text}</Question>)}
-            {/* <Question faq=[] num={23} key="test" curOpen={curOpen} setcurOpen={setcurOpen} ><p>Allow Reat developers <ul>
-              <li>Break up UI into components</li>
-              <li>make Componenets reusable </li>
-              </ul></p></Question> */}
-
-    
+        {faqs.map((faq,num)=><Question faq={faq} num={num} key={faq.title}/>)}
     </ul>
 
 }
-function Question({faq,num,curOpen,setcurOpen,children}){
-//  const [isOpen,setIsOpen] = useState(false);
-const isOpen=curOpen===num;
-    const handleToggle= () => {
-  
-        setcurOpen(num===curOpen?"":num);
-        // setcurOpen(isOpen?"":num);
-    };
+function Question({faq,num}){
+  const [isOpen,setIsOpen] = useState(false);
 
-  
-return <div className={`item ${isOpen?'open':''}`} onClick={handleToggle}>
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+return <div className={`item ${isOpen?'open':''}`} onClick={handleClick}>
     <p className="number">{num<9?`0${num}`:num}</p>
     <p className="title"> {faq.title}</p>
     <p className="icon">{isOpen ? "-" : "+"}</p>
 <div className="content-box" > 
-{isOpen && <p>{children}</p>}
+{isOpen && <p>{faq.text}</p>}
 </div>
   </div>
 
