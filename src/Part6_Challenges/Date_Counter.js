@@ -74,4 +74,3 @@ function Count({ value }){
 
   // we can use nested ternary
   // {count===0?"Today is":count>0?`${count} days from:``${Math.abs(count)} days ago from today was`}
-  
