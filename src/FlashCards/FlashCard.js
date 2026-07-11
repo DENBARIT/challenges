@@ -80,7 +80,7 @@ function FlashCards() {
             {questions.map((question) => (
                 <div key={question.id} className={question.id === selectedId ? "selected" : ""} onClick={() => handleClick(question.id)}>
                 
-                 <p>{question.id==selectedId ? question.answer : question.question}</p></div>
+                 <p>{question.id===selectedId ? question.answer : question.question}</p></div>
             ))}
         </div>
     );
