@@ -42,7 +42,7 @@ if(error.name !== "AbortError"){
     return(
     <div>
         <input type="text" placeholder="Enter amount"  value={amount} onChange={(e) => setAmount(e.target.value)} disabled={isLoading} />
-        <select value={baseCurrency} onChange={(e) => setBaseCurrency(e.target.value)}>
+        <select value={baseCurrency} onChange={(e) => setBaseCurrency(e.target.value)} disabled={isLoading}>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
             <option value="CAD">CAD</option>
